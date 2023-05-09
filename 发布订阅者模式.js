@@ -1,0 +1,29 @@
+//on:订阅者  emit:发布者
+const e={
+  _callback:[],
+  on(callback){
+    this._callback.push(callback)
+  },
+  emit(value){
+    this._callback.forEach(callback=>callback(value))
+  }
+}
+e.on(function(value){
+  console.log("订阅了消息："+value);
+  if(value=='快吃饭了'){
+     console.log("来了");
+  }
+})
+e.on(function(value){
+  console.log("订阅了消息："+value);
+  if(value=='来吃饭了'){
+     console.log("吃什么");
+  }
+})
+e.on(function(value){
+  console.log("订阅了消息："+value);
+  if(value=='吃饭了'){
+     console.log("等我打完这一局");
+  }
+})
+e.emit("吃饭了")
